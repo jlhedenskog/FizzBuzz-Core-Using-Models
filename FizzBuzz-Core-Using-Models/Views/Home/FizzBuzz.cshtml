@@ -1,0 +1,58 @@
+﻿@model FizzBuzz_Core_Using_Models.Models.FizzBuzzModel
+@{
+    ViewData["Title"] = "FizzBuzz";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<form asp-action="FizzBuzz">
+    <div class="row">
+        <div class="col">
+            <h3>Fizz Number:</h3>
+            <input class="userInput" type="text" name="userNumber1" value="@Model.Fizzer" />
+
+        </div>
+        <div class="col">
+            <h3>Buzz Number:</h3>
+            <input class="userInput" type="text" name="userNumber2" value="@Model.Buzzer" />
+
+        </div>
+        <div class="col">
+            <button class="btn btn-primary mt-4" type="submit">Submit</button>
+        </div>
+
+    </div>
+</form>
+
+<hr />
+
+<div class="row">
+    <div class="col">
+        <p>The calculated output is :</p>
+
+        <div class="row">
+            @foreach (var item in Model.Output)
+            {
+                <div class="col-3">@item</div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var userInputs = document.getElementsByClassName('userInput');
+
+    for (let i = 0; i < userInputs.length; i++) {
+        userInputs[i].addEventListener("keypress", function (evt) {
+            var character = (evt.which) ? evt.which : evt.keyCode;
+            if (character >= 48 && character <= 57) {
+                evt.returnValue = true;
+            }
+            else {
+                evt.returnValue = false;
+            }
+        });
+    }
+
+
+</script>
